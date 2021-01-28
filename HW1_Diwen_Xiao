@@ -1,0 +1,30 @@
+# 1. Create a list of your favorite colors
+favorite_colors = ['Pink', 'White', 'Black', 'Blue']
+print(favorite_colors)
+
+
+# 2. Generate a list of numbers from 30 to 60 with interval 3
+nums = list(range(30, 61, 3))
+print(nums)
+
+
+# 3. Create the following dictionary. 
+mydict = {'Sunny': 'play', 'Rainy': 'watching TV', 'Cloudy': 'walk'}
+
+# Then add a new pair (“snowy”, “ski”) to your dictionary.
+mydict = {'Sunny': 'play', 'Rainy': 'watching TV', 'Cloudy': 'walk'}
+mydict.update({'snowy': 'ski'})
+
+
+# 4. Using if…elif…else statement, to help grade students’ score. 
+score = float(input('score: '))
+
+if score >= 90:
+    grade = 'A'
+elif score < 90 and score >= 80:
+    grade = 'B'
+elif score <80 and score >=70:
+    grade = 'C'
+else:
+    grade = 'F'
+print(grade)
