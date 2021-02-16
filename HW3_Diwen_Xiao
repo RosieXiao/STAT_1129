@@ -1,0 +1,42 @@
+# Questin 0
+marks = {'Andy':88, 'Amy':66, 'James': 90, 'Jules': 55, 'Arthur': 77}
+marks
+
+
+# Qurstion 1
+marks = {'Andy':88, 'Amy':66, 'James': 90, 'Jules': 55, 'Arthur': 77}
+for name, grade in marks.items():
+    print(name, grade)
+    
+    
+# Question 2
+import statistics as stats
+grade = [88, 66, 90, 55, 77]
+print(stats.mean(grade))
+print(max(grade))
+print(min(grade))
+
+
+# Question 3
+for i in marks:
+    if 'J' in i:
+        break
+    print(i)
+    
+    
+# Question 4
+for i in marks:
+    if 'J' in i:
+        continue
+    print(i)
+    
+    
+# Question 5
+name = input('name = ')
+def score(name):
+    for keys, values in marks.items():
+        if keys == name:
+            return values
+        else:
+            return("cannot find this student’s name")
+score(name)
