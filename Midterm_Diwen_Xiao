@@ -1,0 +1,57 @@
+#1 
+
+text = [2,4,6,8,4,5,2,1,9,0,4,6,7,4,3,2,1,9,10,3,7,9,6,0,1,3,5,6,7,8,9,10,2,3,6,8,9,10,6,7,4,3]
+
+number_counts = {}
+
+for number in text:
+    if number in number_counts: 
+        number_counts[number] += 1
+    else:
+        number_counts[number] = 1
+
+#print(f'{"NUMBER":<12}COUNT')
+
+
+for number, count in sorted(number_counts.items()):
+    print(f'{number:<3}', ':', (count))
+
+   
+print('Explanation: Here ', end='')
+for number, count in sorted(number_counts.items()):
+    print(number, 'occurs', count, 'times, ', end= '')
+    
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.countplot(text)
+
+plt.xlabel('Number')
+
+
+import json
+y = json.dumps(number_counts)
+
+
+f = open("number_counts.json", "w")
+f.write(y)
+f.close()
+
+f = open("number_counts.json", "r")
+print(f.read())
+
+
+
+#2
+
+import pandas as pd
+
+df = pd.read_csv('./Desktop/amazon.csv')
+df["Item Total"] = df["Item Total"].str.replace('$','').astype(float)
+df["Item Total"].sum()
+
+df["Item Total"].mean()
+
+df["Item Total"].max()
+
+df.plot.bar(x='Order Date', y='Item Total', rot=90)
