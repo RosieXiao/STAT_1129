@@ -1,0 +1,163 @@
+# Question 1
+
+> matrix1 <- matrix(c(7,2,9,4,12,13), nrow = 2, ncol = 3)
+> matrix2 <- matrix(c(1,2,3,7,8,9,12,13,14,19,20,21), nrow = 3, ncol = 4)
+
+> matrix3 <- matrix1 %*% matrix2
+
+> matrix3               #The result is below
+     [,1] [,2] [,3] [,4]
+[1,]   61  229  369  565
+[2,]   49  163  258  391
+
+
+
+
+# Question 2
+
+#a
+> dataframe <- data.frame(
++ id = c(1,2,3,4,5),
++ name = c('Peter','Amy','Rayn','Gary','Michelle'),
++ salary = c(623.30, 515.20, 611.00, 729.00, 843.25)
++ )
+> dataframe
+
+#b
+new_dataframe <- cbind(dataframe, department = c('IT', 'CS', 'STAT', 'MATH', 'ECON'))
+
+#c
+> new_dataframe[c(1,3,5),c(2,3)]
+
+#d
+> s <- new_dataframe[c(1,4,5),"salary"]
+> n <- new_dataframe[c(1,4,5), 'name']
+> barplot(s, names.arg = n)
+
+#e
+> salary1 <- new_dataframe$salary
+> summery(salary1)
+> s1 <- c(max(salary1), min(salary1), median(salary1))
+> mylabel <- c('MAX', 'MIN', 'MEDIAN')
+> pie(s1, mylabel, main = 'salarys')
+
+
+
+# Question 3
+
+#To avoid the error caused by the partial R-code, 
+#I re-draw the american flag by using the R code which contains the for loop and if statement as the hw asked to do.
+
+# Python code 
+import turtle as t
+ t.speed(2000)      #Speed, for draw the picture quick
+
+ long=741          
+ wide=390                  #741 : 390 = 1.9 : 1.0
+ wide1=wide/13             # 13 stand for 13 red and white lines
+ t.setup(long,wide)                  
+ t.up()
+ t.goto(-long/2,wide/2)             
+
+ def flag(height):                 
+     t.color("red")          #Set the color as red instead of using the other function
+     a = 165
+     for i in range(7):       # 7 red lines
+         t.down()
+         t.begin_fill()
+         t.forward(long)
+         t.goto(long/2,a)
+         t.back(long)
+         t.end_fill()
+         t.up()
+         t.goto(-long/2,a-30)
+         a-=60
+ flag(165)
+
+ def rectangle(lengh,height,color):     #draw the blue part          
+     t.color("blue")
+     t.up()
+     t.goto(-long/2,wide/2)
+     t.begin_fill()
+     t.forward(long/2)
+     t.goto(0,-15)
+     t.back(long/2)
+     t.end_fill()
+ rectangle(long/2, wide/3, 'blue')
+
+ def star(x,y):                 #Draw the star
+     t.color("white")
+     t.up()
+     t.goto(x,y)
+     t.begin_fill()
+
+     for i in range(5):
+         t.forward(15)
+         t.right(72)
+         t.forward(15)
+         t.right(144)
+
+     t.end_fill()
+
+
+ sterx = -344                   #6*5
+ for i in range(6):
+     stery = 178
+     for j in range(5):
+         star(sterx,stery)
+         stery -= 42
+     sterx+=60
+ sterm=-314                      #5*4
+ for i in range(5):
+     stern=157
+     for j in range(4):
+         star(sterm,stern)
+         stern-=42
+     sterm+=60
+
+
+if __name__ == '__main__':
+    t.setup(width=468, height=312)  
+    t.hideturtle()
+    t.pen(speed=10)
+    star(0, 0)
+    star()
+
+turtle.done()
+         
+         
+ # R code 
+ 
+win.graph(width=5,height=3);plot.new()
+par(mar=c(0,0,0,0))
+plot.window(xlim = c(0, 27),ylim = c(0,13),
+ xaxs="i",yaxs="i")
+for(i in seq(1,by=2,length=7))
+{
+ rect(0,i-1,27,i,border=NA,col="red")
+}
+for(i in seq(2,by=2,length=6))
+{
+ rect(0,i-1,27,i,border=NA,col="white")
+}
+rect(0,6,11.8,13,,border=NA,col="blue")
+b1=c(6.7,6+3*0.7,6+5*0.7,6+7*0.7,6+9*0.7)
+b2=c(6+2*0.7,6+4*0.7,6+6*0.7,6+8*0.7)
+b=b1
+a=rep(1,5)
+for(i in 2:11)
+{
+ if((i/2)!=ceiling(i/2))
+ { 
+   a=append(a,rep(i,5))
+   b=append(b,b1)
+ }
+ if((i/2)==ceiling(i/2))
+ {
+   a=append(a,rep(i,4))
+   b=append(b,b2)
+ }
+}
+for(j in 1:50)
+symbols(a[j],b[j], stars=as.matrix(t(c(0.1,0.05,0.1,0.05,
+0.1,0.05,0.1,0.05,0.1,0.05)*4.5)),add=T, bg="white", lwd=1, inches=F)
